@@ -132,6 +132,7 @@ const widgets = (state = initialState, action) => {
       return {
         ...state,
         ids: newIds,
+        showSidebar: false,
       };
     }
     case SHOW_ADD_WIDGET_MODAL:
@@ -145,12 +146,14 @@ const widgets = (state = initialState, action) => {
       return {
         ...state,
         showAddWidgetModal: false,
+        showSidebar: false,
       };
 
     case SHOW_DASHBOARD_SIDEBAR:
       return {
         ...state,
         showSidebar: true,
+        metadata: collapseWidgetSidebars(state.metadata),
       };
 
     case HIDE_DASHBOARD_SIDEBAR:
@@ -163,12 +166,13 @@ const widgets = (state = initialState, action) => {
       return {
         ...state,
         metadata: {
-          ...state.metadata,
+          ...collapseWidgetSidebars(state.metadata),
           [action.id]: {
             ...state.metadata[action.id],
             showSidebar: true,
           },
         },
+        showSidebar: false,
       };
 
     case HIDE_WIDGET_SIDEBAR:
@@ -228,6 +232,16 @@ const widgets = (state = initialState, action) => {
   }
 };
 
+const collapseWidgetSidebars = function(metadata){
+  const newMetadata = {...metadata};
+  Object.keys(newMetadata).forEach( widgetId => {
+    newMetadata[widgetId] = {
+      ...metadata[widgetId],
+      showSidebar: false,
+    }
+  });
+  return newMetadata;
+}
 
 const rootReducer = combineReducers({
   widgets,

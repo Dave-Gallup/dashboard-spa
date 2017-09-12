@@ -25,7 +25,9 @@ const App = (props) => {
   ));
 
   return (
-    <div className="page-container">
+    <div
+      className="page-container"
+    >
       <div
         role="link"
         tabIndex="-1"
