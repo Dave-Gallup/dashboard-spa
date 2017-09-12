@@ -47,6 +47,10 @@ const widgets = (state = initialState, action) => {
         return {
           ...state,
           ids: [...state.ids, TRANSIT_WIDGET_ID],
+          byId: {
+            ...state.byId,
+            [TRANSIT_WIDGET_ID]: transitReducer(state.byId[TRANSIT_WIDGET_ID], action),
+          },
           showAddWidgetModal: false,
           grid: {
             ...state.grid,
@@ -71,6 +75,10 @@ const widgets = (state = initialState, action) => {
         return {
           ...state,
           ids: [...state.ids, GITHUB_WIDGET_ID],
+          byId: {
+            ...state.byId,
+            [GITHUB_WIDGET_ID]: githubReducer(state.byId[GITHUB_WIDGET_ID], action),
+          },
           showAddWidgetModal: false,
           grid: {
             ...state.grid,
@@ -95,6 +103,10 @@ const widgets = (state = initialState, action) => {
         return {
           ...state,
           ids: [...state.ids, SLACK_WIDGET_ID],
+          byId: {
+            ...state.byId,
+            [SLACK_WIDGET_ID]: slackReducer(state.byId[SLACK_WIDGET_ID], action),
+          },
           showAddWidgetModal: false,
           grid: {
             ...state.grid,
@@ -218,11 +230,11 @@ const widgets = (state = initialState, action) => {
     default:
       return {
         ...state,
-        byId: {
-          [TRANSIT_WIDGET_ID]: transitReducer(state.byId[TRANSIT_WIDGET_ID], action),
-          [GITHUB_WIDGET_ID]: githubReducer(state.byId[GITHUB_WIDGET_ID], action),
-          [SLACK_WIDGET_ID]: slackReducer(state.byId[SLACK_WIDGET_ID], action),
-        },
+        // byId: {
+        //   [TRANSIT_WIDGET_ID]: transitReducer(state.byId[TRANSIT_WIDGET_ID], action),
+        //   [GITHUB_WIDGET_ID]: githubReducer(state.byId[GITHUB_WIDGET_ID], action),
+        //   [SLACK_WIDGET_ID]: slackReducer(state.byId[SLACK_WIDGET_ID], action),
+        // },
         showSidebar: state.ids.length === 0,
       };
   }
