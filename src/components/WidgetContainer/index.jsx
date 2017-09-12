@@ -75,7 +75,7 @@ WidgetContainer.propTypes = {
   removeWidget: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   const id = ownProps.id;
   const showSidebar = state.widgets.metadata[ownProps.id].showSidebar;
   const locked = state.widgets.locked;

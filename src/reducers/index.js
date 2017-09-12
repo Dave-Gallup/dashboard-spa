@@ -40,7 +40,18 @@ const initialState = {
   metadata: {},
 };
 
-const widgets = (state = initialState, action) => {
+const collapseWidgetSidebars = (metadata) => {
+  const newMetadata = { ...metadata };
+  Object.keys(newMetadata).forEach((widgetId) => {
+    newMetadata[widgetId] = {
+      ...metadata[widgetId],
+      showSidebar: false,
+    };
+  });
+  return newMetadata;
+};
+
+export const widgets = (state = initialState, action) => {
   switch (action.type) {
     case ADD_WIDGET:
       if (action.id === TRANSIT_WIDGET_ID && !state.ids.includes(TRANSIT_WIDGET_ID)) {
@@ -231,17 +242,6 @@ const widgets = (state = initialState, action) => {
       };
   }
 };
-
-const collapseWidgetSidebars = function(metadata){
-  const newMetadata = {...metadata};
-  Object.keys(newMetadata).forEach( widgetId => {
-    newMetadata[widgetId] = {
-      ...metadata[widgetId],
-      showSidebar: false,
-    }
-  });
-  return newMetadata;
-}
 
 const rootReducer = combineReducers({
   widgets,
