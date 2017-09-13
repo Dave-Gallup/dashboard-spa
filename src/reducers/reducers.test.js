@@ -2,7 +2,7 @@ import { Reducer } from 'redux-testkit';
 import { transit as transitReducer } from '@databraid/transit-widget/lib/reducers';
 import { github as githubReducer } from '@databraid/github-widget/lib/reducers';
 import { storeReducer as slackReducer } from '@databraid/slack-widget/lib/Reducers';
-import { widgets as rootReducer } from './index';
+import { widgets as rootReducer, collapseWidgetSidebars } from './index';
 import {
   TRANSIT_WIDGET_ID,
   SLACK_WIDGET_ID,
@@ -98,3 +98,9 @@ describe('rootReducer', () => {
     });
   });
 });
+
+// describe('non-reducer functions', () => {
+//   it('should switch all widgets to showSidebar: false', () => {
+//
+//   });
+// });

@@ -40,7 +40,7 @@ const initialState = {
   metadata: {},
 };
 
-const collapseWidgetSidebars = (metadata) => {
+export const collapseWidgetSidebars = (metadata) => {
   const newMetadata = { ...metadata };
   Object.keys(newMetadata).forEach((widgetId) => {
     newMetadata[widgetId] = {
